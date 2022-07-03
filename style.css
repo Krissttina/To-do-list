@@ -28,7 +28,7 @@ body{
 
 #app{
     width: 50%;
-    min-width: 400px;
+    width: 300px;
 }
 
 h1{
@@ -76,8 +76,15 @@ ul li a:hover{
     opacity: 0.8;
 }
 
-input,button{
+button{
     font: 400 20px "Lato", sans-serif;
+    width: 30%;
+    height: 40px;
+    border: 1px solid #dcdce6;
+    border-radius: 8px;
+    background-color: #56a2ab;
+    color: #fff;
+    cursor: pointer;
 }
 
 input{
@@ -90,17 +97,6 @@ input{
     margin-right: 10px;
 }
 
-
-.btn-add{
-    width: 30%;
-    height: 40px;
-    border: 1px solid #dcdce6;
-    border-radius: 8px;
-    background-color: #56a2ab;
-    color: #fff;
-    cursor: pointer;
-}
-
-.btn-add:hover{
+button:hover{
     opacity: 0.9;
 }

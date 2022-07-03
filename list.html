@@ -8,15 +8,13 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="app">
-        <h1>to do list</h1>
-        <ul>
-
-        </ul>
-        <input type="text" placeholder="New task">
-        <button class="btn-add">Add</button>
-        <p>Insert a new task</p>
-    </div>
+    <div id="app" class="header">
+        <h1>To Do List</h1>
+        <input type="text" id="myInput" placeholder="New task">
+        <button onclick="newElement()" class="addBtn">Add</button>
+      </div>
+      <ul id="myUL">
+      </ul>
     <script src="script.js" ></script>
 </body>
 </html>

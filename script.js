@@ -1,46 +1,54 @@
-var listElement = document.querySelector("#app ul");
-var inputElement = document.querySelector("#app input");
-var buttonElement = document.querySelector("#app button");
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
 
-var eve = JSON.parse(localStorage.getItem("list_eve")) || [];
-function renderEve() {
-    listElement.innerHTML = "";
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
 
-    for (ev of eve){
-        var evElement = document.createElement("li");
-        var evText = document.createTextNode(ev);
-        var linkElement = document.createElement("a");
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
 
-        linkElement.setAttribute("href", "#");
-        var po = eve.indexOf(ev);
-        linkElement.setAttribute("onclick", "deleteEv(" + po +")");
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
 
-        var linkText = document.createTextNode("done");
-        linkElement.appendChild(linkText);
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
 
-        evElement.appendChild(evText);
-        evElement.appendChild(linkElement);
-        linkElement.appendChild(evElement);
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
     }
-}
-
-renderEve();
-function addEv(){
-    var evText = inputElement.value;
-
-    eve.push(evText);
-    inputElement.value = "";
-    renderEve();
-    saveToStorage();
-}
-
-buttonElement.onclick = addEv;
-function deleteEv(po){
-    eve.splice(po, 1);
-    renderEve();
-    saveToStorage();
-}
-
-function saveToStorage(){
-    localStorage.setItem("list_eve", JSON.stringify(eve));
+  }
 }
