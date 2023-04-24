@@ -1,46 +1,34 @@
-// Click on a close button to hide the current list item
-let close = document.getElementsByClassName("close");
+const myInput = document.getElementById('myInput');
+const ul = document.getElementById('list');
 
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    let div = this.parentElement;
-    div.style.display = "none";
-  }
-}
+document.getElementById('addBtn').addEventListener('click', () => {
+  //check for empty field
+  if (myInput.value == '') {
+    return;
+  } 
+  
+  const li = document.createElement('li');
+  ul.appendChild(li);
 
-// Add a "checked" symbol when clicking on a list item - not working
-const list = document.querySelector('ul');
-list.addEventListener('click', function(e) {
-  if (e.target.tagName === 'LI') {
-    e.target.classList.toggle('checked');
-  }
-}, false); //add radio button for checking
+  //checkbox
+  const checkbox = document.createElement('input');
+  checkbox.setAttribute('type', 'checkbox');
+  li.appendChild(checkbox)
+  
+  //create p elements
+  const p = document.createElement('p');
+  p.textContent = myInput.value;
+  li.appendChild(p);
 
-// Create new list item when Add button is clicked
-function newElement() {
-  const li = document.createElement("li");
-  const inputValue = document.getElementById("myInput").value;
-  const text = document.createTextNode(inputValue);
-  li.appendChild(text);
+  myInput.value = '';
 
-  if (inputValue == '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("list").appendChild(li);
-  }
-
-  document.getElementById("myInput").value = ""; //empty imput fields
-
-  const span = document.createElement("span");
-  const cross = document.createTextNode("\u00D7"); //cross
-  span.className = "close";
-  span.appendChild(cross);
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      let div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
+  //create delete cross icon
+  const delBtn = document.createElement("button"); //cross
+  delBtn.textContent = "\u00D7";
+  delBtn.className = "delete";
+  li.appendChild(delBtn);
+  //make it delete
+  delBtn.addEventListener('click', () => {
+    li.remove();
+  });
+});
