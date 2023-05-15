@@ -1,7 +1,8 @@
 ### To-do-list
 
-This project represents simple to-do list. 
-Multiple tasks can be created.
+This project represents simple to-do list which can create multiple tasks.
+
+You can try live demo by clicking on 'github-pages' in Environment ->
 
 ![preview](preview.png)
 
